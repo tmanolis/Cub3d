@@ -16,7 +16,7 @@ RM = rm -rf
 SRCS_DIR = srcs/
 OBJ_DIR = objs/
 LIBFT_DIR = libft
-MLX_DIR = mlx_linux
+MLX_DIR = minilibx-linux
 
 #########################################
 #			FLAGS COMPILATION			#
