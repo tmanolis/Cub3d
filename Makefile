@@ -16,25 +16,26 @@ RM = rm -rf
 SRCS_DIR = srcs/
 OBJ_DIR = objs/
 LIBFT_DIR = libft
-MLX_DIR = minilibx-linux
+MLX_DIR = minilibx_linux
 
 #########################################
 #			FLAGS COMPILATION			#
 #########################################
 CFLAGS = -Wall -Werror -Wextra -g
 #CFLAGS += -fsanitize=address  -Wno-unused
-IFLAGS := -I incl/
+IFLAGS := -I includes/
 LFLAGS := -L$(LIBFT_DIR) -lft
 MFLAGS = -ldl -lmlx -L${MLX_DIR} -lm -lXext -lX11 -Imlx $(MLX_PATH)
 #########################################
 #			FILES PATH					#
 #########################################
-INC_PATH = ./incl/cub3d.h
+INC_PATH = includes/cub3d.h
 MLX_PATH = ${MLX_DIR}/libmlx.a
 #########################################
 #			SOURCES	FILES				#
 #########################################
-SRCS = main.c 											\
+SRCS = main.c 							\
+	00_Error_handling/00_check_arg.c 	\
 	
 
 SRC	= $(addprefix $(SRCS_DIR),$(SRCS))
