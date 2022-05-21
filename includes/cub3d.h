@@ -10,7 +10,7 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include "../libft/libft.h"
-# include "../minilibx_linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
 
 # ifndef O_DIRECTORY
 #  define O_DIRECTORY 00200000
