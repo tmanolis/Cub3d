@@ -34,9 +34,12 @@ MLX_PATH = ${MLX_DIR}/libmlx.a
 #########################################
 #			SOURCES	FILES				#
 #########################################
-SRCS = main.c 							\
-	00_Error_handling/00_check_arg.c 	\
-	
+SRCS = main.c 									\
+	00_Error_handling/00_check_arg.c 			\
+	01_Parsing/00_open_file.c 					\
+	05_Utils/free_double_array.c 				\
+	05_Utils/gnl/get_next_line.c 		\
+	05_Utils/gnl/get_next_line_utils.c \
 
 SRC	= $(addprefix $(SRCS_DIR),$(SRCS))
 
@@ -67,7 +70,7 @@ $(NAME): $(OBJS)
 	@make -C ${MLX_DIR}
 	@make -C $(LIBFT_DIR)
 	@echo $(CYAN) " - Compiling $@" $(RED)
-	@$(CC) $(RFLAGS) $(CFLAGS) $(OBJS) $(LFLAGS) $(IFLAGS) -o $(NAME) $(MFLAGS)  
+	@$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) $(IFLAGS) -o $(NAME) $(MFLAGS)  
 	@echo $(GREEN) "[OK COMPILED]" $(EOC)
 
 clean:
@@ -81,7 +84,7 @@ fclean: clean
 		@echo $(PURPLE) "[🧹FCleaning...🧹]" $(EOC)
 		@${RM} ${NAME}
 		@make --no-print-directory -C $(LIBFT_DIR) fclean
-		@make --no-print-directory -C $(MLX_DIR) fclean
+		# @make --no-print-directory -C $(MLX_DIR) fclean
 
 re: 	fclean all
 
