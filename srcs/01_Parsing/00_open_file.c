@@ -34,7 +34,7 @@ static void	put_input_in_map(int row, int column, int i, t_data *data)
 	{
 		data->map.map[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
 		if (!data->map.map[row])
-			return (ft_free(data->map.map));
+			return (free_double_array(data->map.map));
 		while (line[i] != '\0')
 			data->map.map[row][column++] = line[i++];
 		data->map.map[row++][column] = '\0';

@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 16:58:10 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/05/04 16:14:21 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/05/23 17:11:43 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static size_t	ft_letters_count(char const *str, char set, size_t i)
 	return (count);
 }
 
-static void	*ft_free(char **tab)
+static void	*free_double_array(char **tab)
 {
 	size_t	i;
 
@@ -79,7 +79,7 @@ size_t i)
 			length = ft_letters_count(str, set, i);
 			new_tab[row] = ft_calloc(length + 1, sizeof(char));
 			if (!new_tab[row])
-				return (ft_free(new_tab));
+				return (free_double_array(new_tab));
 			while (column < length)
 				new_tab[row][column++] = str[i++];
 			new_tab[row++][column] = '\0';

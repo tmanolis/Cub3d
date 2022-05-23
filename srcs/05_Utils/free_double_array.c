@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	ft_free(char **tab)
+void	free_double_array(char **tab)
 {
 	size_t	i;
 

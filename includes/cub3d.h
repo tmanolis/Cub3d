@@ -50,6 +50,6 @@ int		check_arg(char *arg);
 void	create_map_from_cub_file(char *path, t_data *data);
 
 // 05_UTILS - free_double_array.c
-void	ft_free(char **tab);
+void	free_double_array(char **tab);
 
 #endif

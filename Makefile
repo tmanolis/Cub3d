@@ -35,11 +35,14 @@ MLX_PATH = ${MLX_DIR}/libmlx.a
 #			SOURCES	FILES				#
 #########################################
 SRCS = main.c 									\
-	00_Error_handling/00_check_arg.c 			\
 	01_Parsing/00_open_file.c 					\
+	01_Parsing/01_retrieve_info_in_file.c 		\
+	01_Parsing/02_parse_map_description.c 		\
+	01_Parsing/03_check_info_retrieved.c 		\
+	05_Utils/gnl/get_next_line.c 				\
+	05_Utils/gnl/get_next_line_utils.c 			\
+	05_Utils/00_check_arg.c 					\
 	05_Utils/free_double_array.c 				\
-	05_Utils/gnl/get_next_line.c 		\
-	05_Utils/gnl/get_next_line_utils.c \
 
 SRC	= $(addprefix $(SRCS_DIR),$(SRCS))
 
