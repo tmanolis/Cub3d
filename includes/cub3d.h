@@ -24,6 +24,16 @@ enum e_output
 	ERROR = 2
 };
 
+typedef struct	s_graphics
+{
+	char	*dir_NO;
+	char	*dir_SO;
+	char	*dir_WE;
+	char	*dir_EA;
+	int		*floor;
+	int		*ceiling;
+}				t_graphics;
+
 typedef struct s_map
 {
 	int		fd;
@@ -35,11 +45,12 @@ typedef struct s_map
 
 typedef struct s_data
 {
-	void	*mlx;
-	void	*win;
-	int		win_height;
-	int		win_width;
-	t_map	map;
+	void		*mlx;
+	void		*win;
+	int			win_height;
+	int			win_width;
+	t_graphics	graph;
+	t_map		map;
 
 }				t_data;
 

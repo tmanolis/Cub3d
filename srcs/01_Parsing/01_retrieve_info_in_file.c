@@ -23,17 +23,4 @@
 		if (!dir || !dir || !floor | !ceiling)
 		ERROR
 	}
-
-
-
-			X
-		{
-			dir_NO : 
-			dir_WE
-			dir
-			char *dir
-			int[3] floor
-			int[3] ceiling
-			bool on the map
-		}
 */

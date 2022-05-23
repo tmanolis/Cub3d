@@ -14,3 +14,10 @@
 	on doit checker qu'il n'y ait que des lignes vides / white spaces apres,
 	si on a le moindre carac : ERROR map invalide
 */
+
+/*
+	ATTENTION : on va quand meme devoir stocker la map dans un char**
+	Car comme dans son long on va devoir se deplacer dans ce tableau pour interragir
+	et changer le render de la map quand on va bouger le joueur
+*/
+
