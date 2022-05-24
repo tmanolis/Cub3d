@@ -56,7 +56,7 @@ typedef struct s_data
 	void		*win;
 	int			win_height;
 	int			win_width;
-	t_graphics	graph;
+	t_graphics	graphics;
 	t_map		map;
 
 }				t_data;
@@ -72,5 +72,8 @@ int		retrieve_info_in_file(t_data *data, t_graphics *graphics, char **map);
 int		check_info_retrieved(t_graphics *graphics);
 // 05_UTILS - free_double_array.c
 void	free_double_array(char **tab);
+// 05_UTILS - init_data.c
+void	init_data(t_data *data);
+
 
 #endif
