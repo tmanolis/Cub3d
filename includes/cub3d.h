@@ -66,7 +66,10 @@ int		check_arg(char *arg);
 
 // 01_PARSING - 00_open_file.c
 void	create_map_from_cub_file(char *path, t_data *data);
+// 01_PARSING - 01_retrieve_info_in_file.c
 int		retrieve_info_in_file(t_data *data, t_graphics *graphics, char **map);
+// 01_PARSING - 03_check_info_retrieved.c
+int		check_info_retrieved(t_graphics *graphics);
 // 05_UTILS - free_double_array.c
 void	free_double_array(char **tab);
 

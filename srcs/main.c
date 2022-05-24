@@ -20,6 +20,9 @@ int	main(int argc, char **argv)
 		graphics.ceiling = 0;
 		if (retrieve_info_in_file(&data, &graphics, data.map.map) == FAILURE)
 			return (write(2, "Error : does not comply w the rules of the map\n", 63));
+	
+		if (check_info_retrieved(&graphics) == FAILURE)
+			return (write(2, "Error.\nThe infos of this map are invalid.\n", 43));
 	}
 	else
 		ft_putstr_fd("Correct usage is ./cub3d <map.cub>\n", STDERR_FILENO);

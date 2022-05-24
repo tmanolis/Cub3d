@@ -109,6 +109,7 @@ int	retrieve_info_in_file(t_data *data, t_graphics *graphics, char **map)
 	int	i;
 	int	j;
 
+	(void) data;
 	i = 0;
 	while (map[i])
 	{
@@ -138,8 +139,9 @@ int	retrieve_info_in_file(t_data *data, t_graphics *graphics, char **map)
 			}
 			else if (ft_isdigit(map[i][j]))
 			{
-				if (parse_map_description(data, graphics, map[i], j) == INCORRECT_MAP) //c'est la qu'on envoie l'adresse du j
-					return (FAILURE); 
+				break ;
+				// if (parse_map_description(data, graphics, map[i], j) == INCORRECT_MAP) //c'est la qu'on envoie l'adresse du j
+				// 	return (FAILURE); 
 			}
 			j++;
 		}
@@ -148,13 +150,13 @@ int	retrieve_info_in_file(t_data *data, t_graphics *graphics, char **map)
 	printf("VOICI LES DONNEES RECUP :\nDirections: NO : %s | SO : %s | WE : %s | EA : %s\n", graphics->dir_NO, graphics->dir_SO, graphics->dir_WE, graphics->dir_EA);
 	if (graphics->floor)
 	{
-		for (int k = 0; graphics->floor[k]; k++)
-			printf("floor: %d => %d\n", k, graphics->floor[k]);
+		for (int k = 0; k < 3; k++)
+			printf("floor: %d => |%d|\n", k, graphics->floor[k]);
 	}
 	if (graphics->ceiling)
 	{
-		for (int l = 0; graphics->ceiling[l]; l++) // PB avec le 0, qui est genre la "fin" du int * et du coup s'imprime pas
-			printf("ceiling: %d => %d\n", l, graphics->ceiling[l]);
+		for (int l = 0; l < 3; l++) // PB avec le 0, qui est genre la "fin" du int * et du coup s'imprime pas
+			printf("ceiling: %d => |%d|\n", l, graphics->ceiling[l]);
 	}
 	if (!graphics->dir_NO || !graphics->dir_SO || !graphics->dir_WE 
 		|| !graphics->dir_EA || !graphics->floor || !graphics->ceiling)
