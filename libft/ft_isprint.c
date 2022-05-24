@@ -6,13 +6,13 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 12:22:20 by msanjuan          #+#    #+#             */
-/*   Updated: 2021/06/24 16:48:00 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/05/24 13:50:11 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isprint(int c)
 {
-	if (c >= 32 && c < 127)
+	if (c >= 33 && c < 127)
 		return (1);
 	else
 		return (0);

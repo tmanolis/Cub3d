@@ -21,7 +21,14 @@ enum e_output
 {
 	SUCCESS = 0,
 	FAILURE = 1,
-	ERROR = 2
+	ERROR = 2,
+};
+
+enum e_map_errors
+{
+	INCORRECT_MAP = 3,
+	INFO_ALREADY_FILLED,
+	WRONG_INPUT
 };
 
 typedef struct	s_graphics
@@ -59,7 +66,7 @@ int		check_arg(char *arg);
 
 // 01_PARSING - 00_open_file.c
 void	create_map_from_cub_file(char *path, t_data *data);
-
+int		retrieve_info_in_file(t_data *data, t_graphics *graphics, char **map);
 // 05_UTILS - free_double_array.c
 void	free_double_array(char **tab);
 
