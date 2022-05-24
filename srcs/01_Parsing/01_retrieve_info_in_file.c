@@ -51,6 +51,7 @@ static int	*get_rgb_colors(char *line) // normalement on a envoyé line + j + 1
 
 	rgb_to_convert = ft_split(line, ','); 
 	// nb : on s'en fout s'il y a des espaces dans les elts splittés vu que le atoi les ignore
+	// TODO CHECKER AVEC ESPACES APRES LE NB
 	rgb = (int *)malloc(sizeof(int) * 3);
 	if (!rgb)
 		return (0);

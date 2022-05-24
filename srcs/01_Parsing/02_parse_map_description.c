@@ -23,5 +23,5 @@
 
 int	parse_map_description(t_data *data, t_graphics *graph, char *line, int j)
 {
-
+	
 }
