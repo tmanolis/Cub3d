@@ -48,6 +48,9 @@ typedef struct s_map
 	size_t	line_len;
 	char	*path;
 	char	**map;
+	int		nb_line;
+	char	**map_array;
+	int		index_end_of_map;
 }				t_map;
 
 typedef struct s_data
@@ -67,6 +70,8 @@ int		check_arg(char *arg);
 // 01_PARSING - 00_open_file.c
 void	create_map_from_cub_file(char *path, t_data *data);
 int		retrieve_info_in_file(t_data *data, t_graphics *graphics, char **map);
+// 01_PARSING - 02_parse_map_description.c
+int		parse_map_description(t_data *data, char **map, int i, int j);
 
 // 05_UTILS - free_double_array.c
 void	free_double_array(char **tab);
