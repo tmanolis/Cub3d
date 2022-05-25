@@ -41,13 +41,29 @@ int	count_map_lines(t_data *data, char **map, int i)
 	return (i - index_value);
 }
 
+int	fill_map_array(t_map *map, char **map_array, int index)
+{
+	int i;
+
+	i = 0;
+	while (i < map->nb_line)
+	{
+		map_array[i] = strdup(map->map[index]);
+		if (!map_array[i])
+			return (FAILURE);
+		i++;
+		index++;
+	}
+	return (SUCCESS);
+}
+
 int	get_map_info(t_data *data, char **map, int i)
 {
 	data->map.nb_line = count_map_lines(data, map, i);
 	data->map.map_array = (char **)malloc(sizeof(char *) * data->map.nb_line + 1);
 	if (!data->map.map_array)
 		return (FAILURE);
-	if (fill_map_array(data, data->map.map_array, i) == FAILURE)
+	if (fill_map_array(&data->map, data->map.map_array, i) == FAILURE)
 		return (FAILURE);
 }
 
@@ -55,6 +71,8 @@ int	parse_map_description(t_data *data, char **map, int i, int j)
 {
 	if (get_map_info(data, map, i) == FAILURE)
 		return (FAILURE);
+	for (int i = 0; data->map.map[i]; i++)
+		printf("*: %s\n", data->map.map_array[i]);
 	return (SUCCESS);
 }
 
