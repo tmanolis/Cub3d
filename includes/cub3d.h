@@ -45,7 +45,6 @@ typedef struct s_map
 {
 	int		fd;
 	int		line_count;
-	// size_t	line_len;
 	char	*path;
 	char	**file;
 	int		nb_line;
