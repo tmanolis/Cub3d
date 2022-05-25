@@ -8,15 +8,15 @@ int	main(int argc, char **argv)
 	{
 		init_data(&data);
 		if (check_arg(argv[1]) == FAILURE)
-			return (write(STDERR_FILENO, "Is not an existing .cub file\n", 30));
+			return (write(STDERR_FILENO, MSG_WRONG_FILE, 37));
 		create_map_from_cub_file(argv[1], &data);
 		if (retrieve_info_in_file(&data, data.map.file) == FAILURE)
-			return (write(2, "Error : does not comply w the rules of the map\n", 63));
+			return (write(STDERR_FILENO, MSG_MISSING_INFO, 44));
 	
 		if (check_info_retrieved(&data.graphics) == FAILURE)
-			return (write(2, "Error.\nThe infos of this map are invalid.\n", 43));
+			return (write(STDERR_FILENO, MSG_INVALID_INFO, 43));
 	}
 	else
-		ft_putstr_fd("Correct usage is ./cub3d <map.cub>\n", STDERR_FILENO);
+		ft_putstr_fd(MSG_WRONG_NB_ARG, STDERR_FILENO);
 	return (0);
 }

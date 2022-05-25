@@ -12,10 +12,16 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include "../includes/get_next_line.h"
+# include "../includes/structs.h"
 
 # ifndef O_DIRECTORY
 #  define O_DIRECTORY 00200000
 # endif
+
+# define MSG_WRONG_FILE "Error.\nIs not an existing .cub file\n"
+# define MSG_MISSING_INFO "Error.\nThe .cub file is missing some info.\n"
+# define MSG_INVALID_INFO "Error.\nThe infos of this map are invalid.\n"
+# define MSG_WRONG_NB_ARG "Correct usage is ./cub3d <map.cub>\n"
 
 enum e_output
 {
@@ -24,13 +30,6 @@ enum e_output
 	ERR = 2,
 	BREAK = 3,
 	CONTINUE = 4
-};
-
-enum e_map_errors
-{
-	INCORRECT_MAP = 3,
-	INFO_ALREADY_FILLED,
-	ERR
 };
 
 typedef struct	s_graphics
