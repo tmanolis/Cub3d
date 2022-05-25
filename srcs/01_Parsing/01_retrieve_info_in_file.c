@@ -139,9 +139,8 @@ int	retrieve_info_in_file(t_data *data, t_graphics *graphics, char **map)
 			}
 			else if (ft_isdigit(map[i][j]))
 			{
-				break ;
-				// if (parse_map_description(data, graphics, map[i], j) == INCORRECT_MAP) //c'est la qu'on envoie l'adresse du j
-				// 	return (FAILURE); 
+				if (parse_map_description(data, map, i, j) == INCORRECT_MAP) //c'est la qu'on envoie l'adresse du j
+					return (FAILURE); 
 			}
 			j++;
 		}
