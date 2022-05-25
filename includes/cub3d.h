@@ -50,6 +50,7 @@ typedef struct s_map
 	int		nb_line;
 	char	**map;
 	int		index_end_of_map;
+	char	p_direction;
 }				t_map;
 
 typedef struct s_data
@@ -81,6 +82,8 @@ int		check_map_retrieved(t_map *map, char **map_array);
 void	free_double_array(char **tab);
 // 05_UTILS - init_data.c
 void	init_data(t_data *data);
+// 05_UTILS - print_error.c
+int		print_error(char *str);
 
 
 #endif

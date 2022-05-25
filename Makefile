@@ -45,6 +45,7 @@ SRCS = main.c 									\
 	05_Utils/check_arg.c 						\
 	05_Utils/free_double_array.c 				\
 	05_Utils/init_data.c 						\
+	05_Utils/print_error.c 						\
 
 SRC	= $(addprefix $(SRCS_DIR),$(SRCS))
 
