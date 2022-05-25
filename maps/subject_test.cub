@@ -1,13 +1,13 @@
-   WE                            ./path_to_the_west_texture 
-NO      ./path_to_the_north_texture
+   WE                            subject.pdf 
+NO      subject.pdf
 
 
 
-SO ./path_to_the_south_texture
+SO subject.pdf
 
-F      2800  ,    100,    45
+F      28  ,    100,    10
 
-EA ./path_to_the_east_texture
+EA subject.pdf
 
 
 

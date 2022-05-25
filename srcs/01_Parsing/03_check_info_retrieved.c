@@ -42,8 +42,20 @@ static int	check_existence_of_path(char *path)
 
 int	check_info_retrieved(t_graphics *graphics)
 {
-	if (!graphics->dir_NO || !graphics->dir_SO || !graphics->dir_WE 
-	|| !graphics->dir_EA || !graphics->floor || !graphics->ceiling)
+	// printf("dis donc\n");
+	// printf("VOICI LES DONNEES RECUP :\nDirections: NO : %s | SO : %s | WE : %s | EA : %s\n", graphics->dir_NO, graphics->dir_SO, graphics->dir_WE, graphics->dir_EA);
+	// if (graphics->floor)
+	// {
+	// 	for (int k = 0; k < 3; k++)
+	// 		printf("floor: %d => |%d|\n", k, graphics->floor[k]);
+	// }
+	// if (graphics->ceiling)
+	// {
+	// 	for (int l = 0; l < 3; l++) // PB avec le 0, qui est genre la "fin" du int * et du coup s'imprime pas
+	// 		printf("ceiling: %d => |%d|\n", l, graphics->ceiling[l]);
+	// }
+	if (!graphics->dir_NO || !graphics->dir_SO || !graphics->dir_WE
+		|| !graphics->dir_EA || !graphics->floor || !graphics->ceiling)
 		return (FAILURE);
 	if (check_existence_of_path(graphics->dir_NO) == FAILURE
 		|| check_existence_of_path(graphics->dir_SO) == FAILURE
@@ -52,5 +64,6 @@ int	check_info_retrieved(t_graphics *graphics)
 		|| check_input_of_rgb(graphics->floor) == FAILURE
 		|| check_input_of_rgb(graphics->ceiling) == FAILURE)
 		return (FAILURE);
+	printf("tout est bon!\n");
 	return (SUCCESS);
 }
