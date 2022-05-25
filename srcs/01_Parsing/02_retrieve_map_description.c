@@ -21,19 +21,19 @@
 	et changer le render de la map quand on va bouger le joueur
 */
 
-int	count_map_lines(t_data *data, char **map, int i)
+int	count_map_lines(t_data *data, char **file, int i)
 {
 	int index_value;
 	int	j;
 
 	index_value = i;
-	while (map[i])
+	while (file[i])
 	{
 		j = 0;
-		while (map[i][j] == ' ' || map[i][j] == '\t' || map[i][j] == '\r' // ETAPE 1 : IGNORER LES WHITESPACES
-		|| map[i][j] == '\v' || map[i][j] == '\f')
+		while (file[i][j] == ' ' || file[i][j] == '\t' || file[i][j] == '\r' // ETAPE 1 : IGNORER LES WHITESPACES
+		|| file[i][j] == '\v' || file[i][j] == '\f')
 			j++;
-		if (map[i][j] != '1')
+		if (file[i][j] != '1')
 			break;
 		i++;
 	}
@@ -48,7 +48,7 @@ int	fill_map_array(t_map *map, char **map_array, int index)
 	i = 0;
 	while (i < map->nb_line)
 	{
-		map_array[i] = strdup(map->map[index]);
+		map_array[i] = ft_strdup(map->file[index]);
 		if (!map_array[i])
 			return (FAILURE);
 		i++;
@@ -57,22 +57,23 @@ int	fill_map_array(t_map *map, char **map_array, int index)
 	return (SUCCESS);
 }
 
-int	get_map_info(t_data *data, char **map, int i)
+int	get_map_info(t_data *data, char **file, int i)
 {
-	data->map.nb_line = count_map_lines(data, map, i);
-	data->map.map_array = (char **)malloc(sizeof(char *) * data->map.nb_line + 1);
-	if (!data->map.map_array)
+	data->map.nb_line = count_map_lines(data, file, i);
+	data->map.map = (char **)malloc(sizeof(char *) * data->map.nb_line + 1);
+	if (!data->map.map)
 		return (FAILURE);
-	if (fill_map_array(&data->map, data->map.map_array, i) == FAILURE)
+	if (fill_map_array(&data->map, data->map.map, i) == FAILURE)
 		return (FAILURE);
+	return (SUCCESS);
 }
 
-int	parse_map_description(t_data *data, char **map, int i, int j)
+int	retrieve_map_description(t_data *data, char **file, int i)
 {
-	if (get_map_info(data, map, i) == FAILURE)
+	if (get_map_info(data, file, i) == FAILURE)
 		return (FAILURE);
 	for (int i = 0; data->map.map[i]; i++)
-		printf("*: %s\n", data->map.map_array[i]);
+		printf("*: %s\n", data->map.map[i]);
 	return (SUCCESS);
 }
 

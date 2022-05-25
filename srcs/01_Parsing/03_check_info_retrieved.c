@@ -42,6 +42,9 @@ static int	check_existence_of_path(char *path)
 
 int	check_info_retrieved(t_graphics *graphics)
 {
+	if (!graphics->dir_NO || !graphics->dir_SO || !graphics->dir_WE 
+	|| !graphics->dir_EA || !graphics->floor || !graphics->ceiling)
+		return (FAILURE);
 	if (check_existence_of_path(graphics->dir_NO) == FAILURE
 		|| check_existence_of_path(graphics->dir_SO) == FAILURE
 		|| check_existence_of_path(graphics->dir_WE) == FAILURE

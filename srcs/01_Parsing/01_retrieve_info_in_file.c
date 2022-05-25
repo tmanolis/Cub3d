@@ -139,8 +139,10 @@ int	retrieve_info_in_file(t_data *data, t_graphics *graphics, char **map)
 			}
 			else if (ft_isdigit(map[i][j]))
 			{
-				if (parse_map_description(data, map, i, j) == INCORRECT_MAP) //c'est la qu'on envoie l'adresse du j
-					return (FAILURE); 
+				if (retrieve_map_description(data, map, i) == FAILURE) //c'est la qu'on envoie l'adresse du j
+					return (FAILURE);
+				else
+					return (SUCCESS);
 			}
 			j++;
 		}
@@ -157,9 +159,6 @@ int	retrieve_info_in_file(t_data *data, t_graphics *graphics, char **map)
 		for (int l = 0; l < 3; l++) // PB avec le 0, qui est genre la "fin" du int * et du coup s'imprime pas
 			printf("ceiling: %d => |%d|\n", l, graphics->ceiling[l]);
 	}
-	if (!graphics->dir_NO || !graphics->dir_SO || !graphics->dir_WE 
-		|| !graphics->dir_EA || !graphics->floor || !graphics->ceiling)
-		return (FAILURE);
 	printf("tout est bon!\n");
 	return (SUCCESS);
 }

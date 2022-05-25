@@ -45,11 +45,11 @@ typedef struct s_map
 {
 	int		fd;
 	int		line_count;
-	size_t	line_len;
+	// size_t	line_len;
 	char	*path;
-	char	**map;
+	char	**file;
 	int		nb_line;
-	char	**map_array;
+	char	**map;
 	int		index_end_of_map;
 }				t_map;
 
@@ -72,7 +72,7 @@ void	create_map_from_cub_file(char *path, t_data *data);
 // 01_PARSING - 01_retrieve_info_in_file.c
 int		retrieve_info_in_file(t_data *data, t_graphics *graphics, char **map);
 // 01_PARSING - 02_parse_map_description.c
-int		parse_map_description(t_data *data, char **map, int i, int j);
+int		retrieve_map_description(t_data *data, char **map, int i);
 // 01_PARSING - 03_check_info_retrieved.c
 int		check_info_retrieved(t_graphics *graphics);
 

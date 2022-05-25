@@ -32,18 +32,18 @@ static void	put_input_in_map(int row, int column, int i, t_data *data)
 	line = get_next_line(data->map.fd);
 	while (line != NULL)
 	{
-		data->map.map[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
-		if (!data->map.map[row])
-			return (free_double_array(data->map.map));
+		data->map.file[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
+		if (!data->map.file[row])
+			return (free_double_array(data->map.file));
 		while (line[i] != '\0')
-			data->map.map[row][column++] = line[i++];
-		data->map.map[row++][column] = '\0';
+			data->map.file[row][column++] = line[i++];
+		data->map.file[row++][column] = '\0';
 		column = 0;
 		i = 0;
 		free(line);
 		line = get_next_line(data->map.fd);
 	}
-	data->map.map[row] = NULL;
+	data->map.file[row] = NULL;
 }
 
 void	create_map_from_cub_file(char *path, t_data *data)
@@ -57,8 +57,8 @@ void	create_map_from_cub_file(char *path, t_data *data)
 	column = 0;
 	data->map.line_count = retrieve_line_number(path);
 	data->map.path = path;
-	data->map.map = ft_calloc(data->map.line_count + 1, sizeof(char *));
-	if (!(data->map.map))
+	data->map.file = ft_calloc(data->map.line_count + 1, sizeof(char *));
+	if (!(data->map.file))
 		return ;
 	data->map.fd = open(path, O_RDONLY);
 	if (data->map.fd < 0)
