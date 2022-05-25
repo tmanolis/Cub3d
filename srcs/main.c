@@ -12,9 +12,10 @@ int	main(int argc, char **argv)
 		create_map_from_cub_file(argv[1], &data);
 		if (retrieve_info_in_file(&data, &data.graphics, data.map.file) == FAILURE)
 			return (write(2, "Error : does not comply w the rules of the map\n", 63));
-	
-		if (check_info_retrieved(&data.graphics) == FAILURE)
-			return (write(2, "Error.\nThe infos of this map are invalid.\n", 43));
+		
+		check_map_retrieved(&data.map, data.map.map);
+		// if (check_info_retrieved(&data.graphics) == FAILURE || check_map_retrieved(&data.map, data.map.map) == FAILURE)
+		// 	return (write(2, "Error.\nThe infos of this map are invalid.\n", 43));
 	}
 	else
 		ft_putstr_fd("Correct usage is ./cub3d <map.cub>\n", STDERR_FILENO);

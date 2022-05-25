@@ -72,8 +72,8 @@ int	retrieve_map_description(t_data *data, char **file, int i)
 {
 	if (get_map_info(data, file, i) == FAILURE)
 		return (FAILURE);
-	for (int i = 0; data->map.map[i]; i++)
-		printf("*: %s\n", data->map.map[i]);
+	// for (int i = 0; data->map.map[i]; i++)
+	// 	printf("*: %s\n", data->map.map[i]);
 	return (SUCCESS);
 }
 

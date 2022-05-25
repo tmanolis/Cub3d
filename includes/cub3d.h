@@ -70,10 +70,12 @@ int		check_arg(char *arg);
 void	create_map_from_cub_file(char *path, t_data *data);
 // 01_PARSING - 01_retrieve_info_in_file.c
 int		retrieve_info_in_file(t_data *data, t_graphics *graphics, char **map);
-// 01_PARSING - 02_parse_map_description.c
+// 01_PARSING - 02_retrieve_map_description.c
 int		retrieve_map_description(t_data *data, char **map, int i);
 // 01_PARSING - 03_check_info_retrieved.c
 int		check_info_retrieved(t_graphics *graphics);
+// 01_PARSING - 04_check_map_retrieved.c
+int		check_map_retrieved(t_map *map, char **map_array);
 
 // 05_UTILS - free_double_array.c
 void	free_double_array(char **tab);

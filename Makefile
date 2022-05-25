@@ -39,6 +39,7 @@ SRCS = main.c 									\
 	01_Parsing/01_retrieve_info_in_file.c 		\
 	01_Parsing/02_retrieve_map_description.c 	\
 	01_Parsing/03_check_info_retrieved.c 		\
+	01_Parsing/04_check_map_retrieved.c 		\
 	05_Utils/gnl/get_next_line.c 				\
 	05_Utils/gnl/get_next_line_utils.c 			\
 	05_Utils/check_arg.c 						\
