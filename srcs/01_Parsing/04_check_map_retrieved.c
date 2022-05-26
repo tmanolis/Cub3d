@@ -1,11 +1,5 @@
 #include "cub3d.h"
 
-/*
-	EN GROS : ici on envoie l'adresse de j et on fait les checks de map:
-	PAS DE LIGNE VIDE pour espacer les lignes de map
-	à voir pour le reste
-*/
-
 int	check_letters(t_map *map, char **map_array)
 {
 	int	i;
@@ -22,7 +16,7 @@ int	check_letters(t_map *map, char **map_array)
 			|| map->map[i][j] == '\v' || map->map[i][j] == '\f')
 				j++;
 			if (!(ft_strchr("10NSEW", map_array[i][j])))
-				return (print_error("There is an unvalid letter in the map"));
+				return (print_error("There is an invalid letter in the map"));
 			if (ft_strchr("NSEW", map_array[i][j]) && map->p_direction != '0')
 				return (print_error("There is more than one player position"));
 			if (ft_strchr("NSEW", map_array[i][j]) && map->p_direction == '0')
