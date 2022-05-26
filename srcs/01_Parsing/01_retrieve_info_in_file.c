@@ -64,17 +64,23 @@ static int	*get_rgb_colors(char *line)
 	char	**rgb_to_convert;
 	int		*rgb;
 	int		i;
+	int		count;
 
-	rgb_to_convert = ft_split(line, ','); 
+	rgb_to_convert = ft_split(line, ',');
+	count = 0;
+	while (rgb_to_convert[count])
+		count++;
+	if (count != 3)
+		return (0);
 	rgb = (int *)malloc(sizeof(int) * 3);
 	if (!rgb)
 		return (0);
 	i = 0;
 	while (rgb_to_convert[i])
 	{
-		if (i > 2)
-			return (0);
 		rgb[i] = ft_atoi(rgb_to_convert[i]);
+		if (rgb[i] == -1)
+			return (0);
 		i++;
 	}
 	return (rgb);
@@ -106,9 +112,17 @@ static int fill_in_the_floor_or_ceiling(t_graphics *graph, char *line, int j)
 	if (line[j + 1] && ft_isprint(line[j + 1])) 
 		return (ERR);
 	if (!graph->ceiling && line[j] == 'C')
+	{
 		graph->ceiling = get_rgb_colors(line + j + 1);
+		if (graph->ceiling == 0)
+			return (ERR);
+	}
 	else if (!graph->floor && line[j] == 'F')
+	{
 		graph->floor = get_rgb_colors(line + j + 1);
+		if (graph->floor == 0)
+			return (ERR);
+	}
 	else
 		return (ERR);
 	return (SUCCESS);
@@ -116,12 +130,11 @@ static int fill_in_the_floor_or_ceiling(t_graphics *graph, char *line, int j)
 
 int	ignore_whitespaces_and_get_info(t_data *data, char **map, int i, int j)
 {
-	while (map[i][j] == ' ' || map[i][j] == '\t' || map[i][j] == '\r'
-		|| map[i][j] == '\n' || map[i][j] == '\v' || map[i][j] == '\f')
+	while (map[i][j] == ' ' || map[i][j] == '\t' || map[i][j] == '\n')
 		j++;
-	if (ft_isalpha(map[i][j]))
+	if (ft_isprint(map[i][j]) && !ft_isdigit(map[i][j]))
 	{
-		if (map[i][j + 1] && ft_isalpha(map[i][j + 1]))
+		if (map[i][j + 1] && ft_isprint(map[i][j + 1]) && !ft_isdigit(map[i][j]))
 		{
 			if (fill_in_the_correct_dir(&data->graphics, map[i], j) == ERR)
 				return (FAILURE);
