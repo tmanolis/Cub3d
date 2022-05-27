@@ -28,6 +28,48 @@ static int	check_letters(t_map *map, char **map_array)
 	return (SUCCESS);
 }
 
+static int	check_position_is_valid(t_map *map, char **map_array)
+{
+	int i;
+	int j;
+
+	i = map->p_y;
+	j = map->p_x;
+	if (is_a_white_space(map_array[i][j - 1]) == SUCCESS
+		|| is_a_white_space(map_array[i][j + 1]) == SUCCESS
+		|| is_a_white_space(map_array[i - 1][j]) == SUCCESS
+		|| is_a_white_space(map_array[i + 1][j]) == SUCCESS)
+		return (FAILURE);
+	return (SUCCESS);
+}
+
+static int	check_player_position(t_map *map, char **map_array)
+{
+	int	i;
+	int j;
+
+	if (map->p_direction == '0')
+		return (print_error("The map should have a player_direction"));
+	i = 0;
+	while (map_array[i])
+	{
+		j = 0;
+		while (map_array[i][j])
+		{
+			if (ft_strchr("NSEW", map_array[i][j]))
+			{
+				map->p_x = j;
+				map->p_y = i;
+			}
+			j++;
+		}
+		i++;
+	}
+	if (check_position_is_valid(map, map_array) == FAILURE)
+		return (print_error("Player position is invalid"));
+	return (SUCCESS);
+}
+
 static int	check_map_is_at_the_end(t_map *map)
 {
 	int	i;
@@ -51,20 +93,19 @@ static int	check_map_is_at_the_end(t_map *map)
 
 int	check_map_retrieved(t_map *map, char **map_array)
 {
-	// RAJOUTER UN CHECK GENRE MAP DE MIN 3 Lignes par ex ?if (
+	if (map->nb_line < 3)
+		return (print_error("The map should be at least 3 lines long."));
 	if (check_letters(map, map_array) == FAILURE)
 		return (FAILURE);
-	if (map->p_direction == '0')
-		return (print_error("The map should have a player position"));
 	if (check_map_sides(map, map_array) == FAILURE)
 		return (print_error("The map must be surrounded by walls"));
 	if (check_left_side_is_closed(map_array) == FAILURE)
 		return (print_error("The map is not fully closed"));
 	if (check_right_side_is_closed(map_array) == FAILURE)
 		return (print_error("RIGHT The map is not fully closed"));
+	if (check_player_position(map, map_array) == FAILURE)
+		return (FAILURE);
 	if (check_map_is_at_the_end(map) == FAILURE)
 		return (print_error("The map description is not the last element"));
-	// check player_position
-	
 	return (SUCCESS);
 }

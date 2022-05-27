@@ -52,6 +52,8 @@ typedef struct s_map
 	char	**map;
 	int		index_end_of_map;
 	char	p_direction;
+	int		p_x;
+	int		p_y;
 }				t_map;
 
 typedef struct s_data
