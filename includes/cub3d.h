@@ -78,12 +78,18 @@ int		retrieve_map_description(t_data *data, char **map, int i);
 int		check_info_retrieved(t_graphics *graphics);
 // 01_PARSING - 04_check_map_retrieved.c
 int		check_map_retrieved(t_map *map, char **map_array);
+// 01_PARSING - 05_check_map_borders.c
+int		check_top_or_bottom(char **map_array, int i, int j);
+int		check_map_sides(t_map *map, char **map_array);
+int		check_left_side_is_closed(char **map_array);
+int		check_right_side_is_closed(char **map_array);
 
 // 05_UTILS - free_double_array.c
 void	free_double_array(char **tab);
 // 05_UTILS - init_data.c
 void	init_data(t_data *data);
-// 05_UTILS - print_error.c
+// 05_UTILS - utils_functions.c
+int		is_a_white_space(char c);
 int		print_error(char *str);
 
 
