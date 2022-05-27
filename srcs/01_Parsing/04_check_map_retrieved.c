@@ -98,90 +98,91 @@ int	check_map_is_at_the_end(t_map *map)
 	return (SUCCESS);
 }
 
-// int	check_map_is_closed(t_map *map, char **map_array)
+// int	check_left_side_is_closed(t_map *map, char **map_array)
 // {
 // 	int		i;
 // 	int 	j;
-// 	bool	is_wall;
-
-// 	(void)map;
-// 	if (map_array[1])
+	
+// 	// check 2eme ligne
+// 	(void) map;
+// 	j = 0;
+// 	while (map_array[1][j] && (is_a_white_space(map_array[1][j]) == SUCCESS || map_array[1][j] == '1'))
 // 	{
-// 		i = 1;
-// 		while (map_array[i])
-// 		{   
-// 			printf("je boucle\n");
-// 			j = 0;
-// 			is_wall = false;
-// 			// checker si i - 1 white space
-// 			if (map_array[i - 1][j] != '1')
-// 			{
-
-// 			}
-// 			else
-// 			{
-// 				while (map_array[i][j] == ' ' || map_array[i][j] == '\t' || map_array[i][j] == '\r'
-// 				|| map_array[i][j] == '\v' || map_array[i][j] == '\f')
-// 				j++;
-// 				if (map_array[i - 1][j] && map_array[i - 1][j] == '1')
-// 					is_wall = true;
-// 				else if (map_array[i - 1][j + 1] && map_array[i - 1][j + 1] == '1')
-// 					is_wall = true;
-// 				else if (map_array[i - 1][j - 1] && map_array[i - 1][j - 1] == '1')
-// 					is_wall = true;
-// 				if (is_wall == false)
-// 					return (FAILURE);
-// 			}
-// 			i++;
-// 		}
+// 		j++;
+// 	}
+// 	if (map_array[0][j] != '1')
+// 		return (FAILURE);
+// 	// check corps de map
+// 	// 26/05 ADD MARINE : Attention, si on a "1N0 ..." avec les lignes environnantes ok cest ok
+// 	i = 2;
+// 	while (map_array[i] && ft_strchr(map_array[i], '0'))
+// 	{
+// 		j = 0;
+// 		while (map_array[i][j] && (is_a_white_space(map_array[i][j]) == SUCCESS || ft_strchr("1NSEW", map_array[i][j])))
+// 			j++;
+// 		// printf("Valeur de j : %d. voici le char teste: %c\n", j, map_array[i][j]);
+// 		if (is_a_white_space(map_array[i - 1][j]) == SUCCESS) // checker que l'on a pas un espace au dessus du 0
+// 		{
+// 			printf("1 Not closed. Line> |%s|, number %d\n", map_array[i - 1], i - 1);
+// 			return (FAILURE);
+// 		}	
+// 		if (is_a_white_space(map_array[i + 1][j]) == SUCCESS) // checker que l'on a pas un espace en dessous du 0
+// 		{
+// 			printf("2 Not closed. Line> |%s|, number %d\n", map_array[i + 1], i + 1);
+// 			return (FAILURE);
+// 		}	
+// 		if (map_array[i][j - 1] != '1' && !ft_strchr("NSEW", map_array[i][j - 1])) // checker que le 0 succède bien à un 1 ou une DIR
+// 		{
+// 			printf("3 J is : |%d| - Not closed. Line> |%s|, number %d\n", j, map_array[i], i);
+// 			return (FAILURE);
+// 		}	
+// 		i++;
 // 	}
 // 	return (SUCCESS);
 // }
 
-int	check_left_side_is_closed(t_map *map, char **map_array)
+int	check_left_side_is_closed(char **map_array)
 {
 	int		i;
 	int 	j;
 	
-	i = 1;
-	// check 2eme ligne
-	while (map_array[i][j] && 
-			((is_a_white_space(map_array[i][j]) == SUCCESS) || map_array[i][j] == 1))
-			j++;
-	if (map_array[i - 1][j] != '1')
+	j = 0;
+	while (map_array[1][j] && (is_a_white_space(map_array[1][j]) == SUCCESS
+		|| map_array[1][j] == '1'))
+		j++;
+	if (map_array[0][j] != '1')
 		return (FAILURE);
-	// check corps de map
 	i = 2;
 	while (map_array[i] && ft_strchr(map_array[i], '0'))
 	{
 		j = 0;
-		while (map_array[i][j] && 
-			((is_a_white_space(map_array[i][j]) == SUCCESS) || map_array[i][j] == 1))
+		while (map_array[i][j] && (is_a_white_space(map_array[i][j]) == SUCCESS
+			|| ft_strchr("1NSEW", map_array[i][j])))
 			j++;
 		if (is_a_white_space(map_array[i - 1][j]) == SUCCESS)
 			return (FAILURE);
-		if (map_array[i - 1][j - 1] != '1')
+		if (is_a_white_space(map_array[i + 1][j]) == SUCCESS)
+			return (FAILURE);
+		if (!ft_strchr("1NSEW", map_array[i][j - 1]))
 			return (FAILURE);
 		i++;
 	}
-	// derniere ligne de mur
-
+	return (SUCCESS);
 }
 
 int	check_map_retrieved(t_map *map, char **map_array)
 {
 	// RAJOUTER UN CHECK GENRE MAP DE MIN 3 Lignes par ex ?if (
-	check_letters(map, map_array) == FAILURE)
+	if (check_letters(map, map_array) == FAILURE)
 		return (FAILURE);
 	if (map->p_direction == '0')
 		return (print_error("The map should have a player position"));
 	if (check_map_sides(map, map_array) == FAILURE)
 		return (print_error("The map must be surrounded by walls"));
-	if (check_map_is_closed(map, map_array) == FAILURE)
-		return (print_error("The map must be closed by walls"));
+	if (check_left_side_is_closed(map_array) == FAILURE)
+		return (print_error("The map is not fully closed"));
 	if (check_map_is_at_the_end(map) == FAILURE)
 		return (print_error("The map description is not the last element"));
-
 	
 	return (SUCCESS);
 }
