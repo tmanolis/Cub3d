@@ -35,7 +35,9 @@ static int	check_position_is_valid(t_map *map, char **map_array)
 
 	i = map->p_y;
 	j = map->p_x;
-	if (is_a_white_space(map_array[i][j - 1]) == SUCCESS
+	if (ft_strlen(map_array[i - 1]) < (size_t)j
+		|| ft_strlen(map_array[i + 1]) < (size_t)j
+		|| is_a_white_space(map_array[i][j - 1]) == SUCCESS
 		|| is_a_white_space(map_array[i][j + 1]) == SUCCESS
 		|| is_a_white_space(map_array[i - 1][j]) == SUCCESS
 		|| is_a_white_space(map_array[i + 1][j]) == SUCCESS)
