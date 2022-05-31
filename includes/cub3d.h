@@ -13,68 +13,34 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include "../includes/get_next_line.h"
+# include "../includes/structs.h"
 
 # ifndef O_DIRECTORY
 #  define O_DIRECTORY 00200000
 # endif
 
+# define MSG_WRONG_FILE "Error.\nIs not an existing .cub file\n"
+# define MSG_MISSING_INFO "Error.\nThe .cub file is missing some info.\n"
+# define MSG_INVALID_INFO "Error.\nThe infos of this map are invalid.\n"
+# define MSG_WRONG_NB_ARG "Correct usage is ./cub3d <map.cub>\n"
+
 enum e_output
 {
 	SUCCESS = 0,
 	FAILURE = 1,
-	ERROR = 2,
+	ERR = 2,
+	BREAK = 3,
+	CONTINUE = 4
 };
 
-enum e_map_errors
-{
-	INCORRECT_MAP = 3,
-	INFO_ALREADY_FILLED,
-	WRONG_INPUT
-};
-
-typedef struct	s_graphics
-{
-	char	*dir_NO;
-	char	*dir_SO;
-	char	*dir_WE;
-	char	*dir_EA;
-	int		*floor;
-	int		*ceiling;
-}				t_graphics;
-
-typedef struct s_map
-{
-	int		fd;
-	int		line_count;
-	char	*path;
-	char	**file;
-	int		nb_line;
-	char	**map;
-	int		index_end_of_map;
-	char	p_direction;
-	int		p_x;
-	int		p_y;
-}				t_map;
-
-typedef struct s_data
-{
-	void		*mlx;
-	void		*win;
-	int			win_height;
-	int			win_width;
-	t_graphics	graphics;
-	t_map		map;
-
-}				t_data;
-
-// 00_ERROR_HANDLING - 00_check_arg.c
+// 00_ERR_HANDLING - 00_check_arg.c
 int		check_arg(char *arg);
 
 // 01_PARSING - 00_open_file.c
 void	create_map_from_cub_file(char *path, t_data *data);
 // 01_PARSING - 01_retrieve_info_in_file.c
-int		retrieve_info_in_file(t_data *data, t_graphics *graphics, char **map);
-// 01_PARSING - 02_retrieve_map_description.c
+int		retrieve_info_in_file(t_data *data, char **map);
+// 01_PARSING - 02_parse_map_description.c
 int		retrieve_map_description(t_data *data, char **map, int i);
 // 01_PARSING - 03_check_info_retrieved.c
 int		check_info_retrieved(t_graphics *graphics);
