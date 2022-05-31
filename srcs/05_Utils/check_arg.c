@@ -13,9 +13,9 @@ int	check_arg(char *arg)
 	int		fd;
 
 	len = ft_strlen(arg);
-	if (open(arg, O_DIRECTORY) >= 0)
+	fd = open(arg, O_DIRECTORY);
+	if (fd >= 0)
 	{
-		fd = open(arg, O_DIRECTORY);
 		close(fd);
 		return (FAILURE);
 	}

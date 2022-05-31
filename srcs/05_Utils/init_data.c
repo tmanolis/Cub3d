@@ -13,4 +13,5 @@ void	init_graphics(t_graphics *graphics)
 void	init_data(t_data *data)
 {
 	init_graphics(&data->graphics);
+	// init_map
 }

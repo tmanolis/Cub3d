@@ -20,8 +20,8 @@ static int	retrieve_line_number(char *path)
 			free(line);
 			line = get_next_line(fd);
 		}
-		close(fd);
 	}
+	close(fd);
 	return (line_count);
 }
 
