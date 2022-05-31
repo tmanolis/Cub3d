@@ -30,6 +30,8 @@ int	fill_map_array(t_map *map, char **map_array, int index)
 		map_array[i] = ft_strdup(map->file[index]);
 		if (!map_array[i])
 			return (FAILURE);
+		if (map_array[i][ft_strlen(map_array[i]) - 1] == '\n')
+			map_array[i][ft_strlen(map_array[i]) - 1] = '\0';
 		i++;
 		index++;
 	}
@@ -47,11 +49,34 @@ int	get_map_info(t_data *data, char **file, int i)
 	return (SUCCESS);
 }
 
+void	change_space_into_wall(t_map *map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (map->map[i])
+	{
+		j = 0;
+		while (map->map[i][j] == ' ' || map->map[i][j] == '\t' || map->map[i][j] == '\r'
+		|| map->map[i][j] == '\v' || map->map[i][j] == '\f')
+			j++;
+		while (map->map[i][++j])
+		{
+			if (map->map[i][j] == ' ' && j != map->map[i][ft_strlen(map->map[i]) - 1])
+				map->map[i][j] = '1';
+		}
+		i++;
+	}
+}
+
 int	retrieve_map_description(t_data *data, char **file, int i)
 {
 	if (get_map_info(data, file, i) == FAILURE)
 		return (FAILURE);
-	// for (int i = 0; data->map.map[i]; i++)
-	// 	printf("*: %s\n", data->map.map[i]);
+	change_space_into_wall(&data->map);
+	for (int i = 0; data->map.map[i]; i++)
+		printf("*: %s\n", data->map.map[i]);
+	
 	return (SUCCESS);
 }
