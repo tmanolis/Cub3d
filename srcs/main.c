@@ -8,14 +8,12 @@ int	main(int argc, char **argv)
 	{
 		init_data(&data);
 		if (check_arg(argv[1]) == FAILURE)
-			return (write(STDERR_FILENO, MSG_WRONG_FILE, 37));
+			return (print_error(MSG_WRONG_FILE));
 		create_map_from_cub_file(argv[1], &data);
 		if (retrieve_info_in_file(&data, data.map.file) == FAILURE)
-			return (write(STDERR_FILENO, MSG_MISSING_INFO, 44));
-	
+			return (print_error(MSG_MISSING_INFO) && free_for_your_life(&data));
 		if (check_info_retrieved(&data.graphics) == FAILURE)
-			return (write(STDERR_FILENO, MSG_INVALID_INFO, 43));
-		
+			return (print_error(MSG_INVALID_INFO) && free_for_your_life(&data));
 		check_map_retrieved(&data.map, data.map.map);
 		// if (check_info_retrieved(&data.graphics) == FAILURE || check_map_retrieved(&data.map, data.map.map) == FAILURE)
 		// 	return (write(2, "Error.\nThe infos of this map are invalid.\n", 43));

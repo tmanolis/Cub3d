@@ -41,11 +41,11 @@ void	free_map(t_map *map)
 		free_double_array(map->file);
 	if (map->map)
 		free_double_array(map->map);
-	
 }
 
-void	free_for_your_life(t_data *data)
+int	free_for_your_life(t_data *data)
 {
 	free_graphics(&data->graphics);
 	free_map(&data->map);
+	return (FAILURE);
 }

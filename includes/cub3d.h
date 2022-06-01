@@ -54,7 +54,7 @@ int		check_right_side_is_closed(char **map_array);
 
 // 05_UTILS - free_functions.c
 void	free_double_array(char **tab);
-void	free_for_your_life(t_data *data);
+int		free_for_your_life(t_data *data);
 // 05_UTILS - init_data.c
 void	init_data(t_data *data);
 // 05_UTILS - utils_functions.c

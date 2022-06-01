@@ -74,7 +74,7 @@ static int	*get_rgb_colors(char *line)
 	{
 		free_double_array(rgb_to_convert);
 		return (0);
-	}	
+	}
 	rgb = (int *)malloc(sizeof(int) * 3);
 	if (!rgb)
 		return (0);
