@@ -35,13 +35,14 @@ int	fill_map_array(t_map *map, char **map_array, int index)
 		i++;
 		index++;
 	}
+	map_array[i] = NULL;
 	return (SUCCESS);
 }
 
 int	get_map_info(t_data *data, char **file, int i)
 {
 	data->map.nb_line = count_map_lines(data, file, i);
-	data->map.map = (char **)malloc(sizeof(char *) * data->map.nb_line + 1);
+	data->map.map = (char **)malloc(sizeof(char *) * (data->map.nb_line + 1));
 	if (!data->map.map)
 		return (FAILURE);
 	if (fill_map_array(&data->map, data->map.map, i) == FAILURE)
@@ -75,8 +76,5 @@ int	retrieve_map_description(t_data *data, char **file, int i)
 	if (get_map_info(data, file, i) == FAILURE)
 		return (FAILURE);
 	change_space_into_wall(&data->map);
-	for (int i = 0; data->map.map[i]; i++)
-		printf("*: %s\n", data->map.map[i]);
-	
 	return (SUCCESS);
 }

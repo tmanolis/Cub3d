@@ -10,8 +10,17 @@ void	init_graphics(t_graphics *graphics)
 	graphics->ceiling = 0;
 }
 
+void	init_map(t_map *map)
+{
+	map->fd = 0;
+	map->path = NULL;
+	map->file = NULL;
+	map->map = NULL;
+}
+
 void	init_data(t_data *data)
 {
+	ft_memset(&data->map, 0, sizeof(t_map));
 	init_graphics(&data->graphics);
-	// init_map
+	init_map(&data->map);
 }
