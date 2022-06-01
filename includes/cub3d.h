@@ -52,7 +52,7 @@ int		check_map_sides(t_map *map, char **map_array);
 int		check_left_side_is_closed(char **map_array);
 int		check_right_side_is_closed(char **map_array);
 
-// 05_UTILS - free_double_array.c
+// 05_UTILS - free_functions.c
 void	free_double_array(char **tab);
 void	free_for_your_life(t_data *data);
 // 05_UTILS - init_data.c
