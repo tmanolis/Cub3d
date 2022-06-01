@@ -15,18 +15,18 @@ void	free_double_array(char **tab)
 	return ;
 }
 
-void	free_graphics(t_graphics *graphics)
-{
+// void	free_graphics(t_graphics *graphics)
+// {
 	
-}
+// }
 
-void	free_map(t_map *map)
-{
-	if (fd != 0)
-}
+// void	free_map(t_map *map)
+// {
+// 	if (fd != 0)
+// }
 
-void	free_for_your_life(t_data *data)
-{
-	free_graphics(&data->graphics);
-	free_map(&data->map)
-}
+// void	free_for_your_life(t_data *data)
+// {
+// 	free_graphics(&data->graphics);
+// 	free_map(&data->map)
+// }

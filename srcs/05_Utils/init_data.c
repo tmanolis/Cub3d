@@ -14,4 +14,12 @@ void	init_data(t_data *data)
 {
 	init_graphics(&data->graphics);
 	// init_map
+	data->win_height = 800;
+	data->win_width = 1500;
+	
+	
 }
+
+// data->win_height = data->map.line_count * IMG_SIZE;
+// data->win_width = (ft_strlen(data->map.map[0]) - 1) * IMG_SIZE;
+

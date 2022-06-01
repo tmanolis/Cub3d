@@ -41,6 +41,9 @@ SRCS = main.c 									\
 	01_Parsing/03_check_info_retrieved.c 		\
 	01_Parsing/04_check_map_retrieved.c 		\
 	01_Parsing/05_check_map_borders.c 			\
+	02_Events_handling/00_handlers.c 			\
+	02_Events_handling/01_hooks.c 				\
+	03_Graphics/00_init_window.c 				\
 	05_Utils/gnl/get_next_line.c 				\
 	05_Utils/gnl/get_next_line_utils.c 			\
 	05_Utils/check_arg.c 						\

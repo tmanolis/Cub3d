@@ -19,13 +19,14 @@
 #  define O_DIRECTORY 00200000
 # endif
 
+# define TITLE "MADAME 🤝"
 # define MSG_WRONG_FILE "Error.\nIs not an existing .cub file\n"
 # define MSG_MISSING_INFO "Error.\nThe .cub file is missing some info.\n"
 # define MSG_INVALID_INFO "Error.\nThe infos of this map are invalid.\n"
 # define MSG_WRONG_NB_ARG "Correct usage is ./cub3d <map.cub>\n"
 
 enum e_output
-{
+{ 
 	SUCCESS = 0,
 	FAILURE = 1,
 	ERR = 2,
@@ -51,6 +52,15 @@ int		check_top_or_bottom(char **map_array, int i, int j);
 int		check_map_sides(t_map *map, char **map_array);
 int		check_left_side_is_closed(char **map_array);
 int		check_right_side_is_closed(char **map_array);
+
+// 02_EVENTS_HANDLING - 00_handlers.c
+int		handle_crossbtn(t_data *data);
+int		handle_keypress(int keysym, t_data *data);
+// 02_EVENTS_HANDLING - 01_hooks.c
+void	mlx_loop_and_hooks(t_data *data);
+
+// 03_GRAPHICS - 00_init_window.c
+int		init_window(t_data *data);
 
 // 05_UTILS - free_double_array.c
 void	free_double_array(char **tab);
