@@ -7,8 +7,10 @@ static int	check_letters(t_map *map, char **map_array)
 
 	i = 0;
 	map->p_direction = '0';
-	while (map_array[i])
+	printf("ceci est map_arr : %s\n", map_array[i]);
+	while (map_array[i] != NULL)
 	{
+		printf("nb : %d | map_arr : %s\n", i, map_array[i]);
 		j = 0;
 		while (map_array[i][j])
 		{

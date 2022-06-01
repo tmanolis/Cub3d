@@ -22,7 +22,7 @@ MLX_DIR = minilibx-linux
 #			FLAGS COMPILATION			#
 #########################################
 CFLAGS = -Wall -Werror -Wextra -g
-# CFLAGS += -fsanitize=address  -Wno-unused
+#CFLAGS += -fsanitize=address  -Wno-unused
 IFLAGS := -I includes/
 LFLAGS := -L$(LIBFT_DIR) -lft
 MFLAGS = -ldl -lmlx -L${MLX_DIR} -lm -lXext -lX11 -Imlx $(MLX_PATH)
@@ -47,7 +47,7 @@ SRCS = main.c 									\
 	05_Utils/gnl/get_next_line.c 				\
 	05_Utils/gnl/get_next_line_utils.c 			\
 	05_Utils/check_arg.c 						\
-	05_Utils/free_double_array.c 				\
+	05_Utils/free_functions.c 				\
 	05_Utils/init_data.c 						\
 	05_Utils/utils_functions.c 					\
 

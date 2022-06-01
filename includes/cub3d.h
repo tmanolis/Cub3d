@@ -62,8 +62,9 @@ void	mlx_loop_and_hooks(t_data *data);
 // 03_GRAPHICS - 00_init_window.c
 int		init_window(t_data *data);
 
-// 05_UTILS - free_double_array.c
+// 05_UTILS - free_functions.c
 void	free_double_array(char **tab);
+int		free_for_your_life(t_data *data);
 // 05_UTILS - init_data.c
 void	init_data(t_data *data);
 // 05_UTILS - utils_functions.c

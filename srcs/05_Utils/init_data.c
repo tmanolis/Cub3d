@@ -10,16 +10,19 @@ void	init_graphics(t_graphics *graphics)
 	graphics->ceiling = 0;
 }
 
-void	init_data(t_data *data)
+void	init_map(t_map *map)
 {
-	init_graphics(&data->graphics);
-	// init_map
-	data->win_height = 800;
-	data->win_width = 1500;
-	
-	
+	map->fd = 0;
+	map->path = NULL;
+	map->file = NULL;
+	map->map = NULL;
 }
 
-// data->win_height = data->map.line_count * IMG_SIZE;
-// data->win_width = (ft_strlen(data->map.map[0]) - 1) * IMG_SIZE;
-
+void	init_data(t_data *data)
+{
+	ft_memset(&data->map, 0, sizeof(t_map));
+	init_graphics(&data->graphics);
+	init_map(&data->map);
+	data->win_height = 800;
+	data->win_width = 1500;
+}

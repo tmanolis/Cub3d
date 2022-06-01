@@ -71,7 +71,10 @@ static int	*get_rgb_colors(char *line)
 	while (rgb_to_convert[count])
 		count++;
 	if (count != 3)
+	{
+		free_double_array(rgb_to_convert);
 		return (0);
+	}
 	rgb = (int *)malloc(sizeof(int) * 3);
 	if (!rgb)
 		return (0);
@@ -83,6 +86,7 @@ static int	*get_rgb_colors(char *line)
 			return (0);
 		i++;
 	}
+	free_double_array(rgb_to_convert);
 	return (rgb);
 }
 
