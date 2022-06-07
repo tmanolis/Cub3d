@@ -141,20 +141,20 @@ int	ignore_whitespaces_and_get_info(t_data *data, char **map, int i, int j)
 		if (map[i][j + 1] && ft_isprint(map[i][j + 1]) && !ft_isdigit(map[i][j]))
 		{
 			if (fill_in_the_correct_dir(&data->graphics, map[i], j) == ERR)
-				return (FAILURE);
+				return (print_error(MSG_DIRECTION));
 			return (BREAK);
 		}	
 		else
 		{
 			if (fill_in_the_floor_or_ceiling(&data->graphics, map[i], j) == ERR)
-				return (FAILURE);
+				return (print_error(MSG_FLOOR_CEILING));
 			return (BREAK);
 		}	
 	}
 	else if (ft_isdigit(map[i][j]))
 	{
 		if (retrieve_map_description(data, map, i) == FAILURE)
-			return (FAILURE);
+			return (print_error(MSG_INVALID_MAP));
 		return (SUCCESS);
 	}
 	return (CONTINUE);

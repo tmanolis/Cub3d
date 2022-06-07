@@ -12,5 +12,7 @@ int	init_window(t_data *data)
 		free(data->win);
 		return (FAILURE);
 	}
+	data->img.mlx_img = mlx_new_image(data->mlx, W_WIDTH, W_HEIGHT);
+	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bits_per_pixel, &data->img.line_length, &data->img.endian);
 	return (SUCCESS);
 }

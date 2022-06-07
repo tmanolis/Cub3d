@@ -23,6 +23,6 @@ void	init_data(t_data *data)
 	ft_memset(&data->map, 0, sizeof(t_map));
 	init_graphics(&data->graphics);
 	init_map(&data->map);
-	data->win_height = 800;
-	data->win_width = 1500;
+	data->win_height = W_HEIGHT;
+	data->win_width = W_WIDTH;
 }

@@ -11,6 +11,17 @@ typedef struct	s_graphics
 	int		*ceiling;
 }				t_graphics;
 
+typedef struct	s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		x;
+	int		y;
+}				t_img;
+
 typedef struct s_map
 {
 	int		fd;
@@ -33,6 +44,7 @@ typedef struct s_data
 	int			win_width;
 	t_graphics	graphics;
 	t_map		map;
+	t_img		img;
 
 }				t_data;
 

@@ -15,15 +15,38 @@
 # include "../includes/get_next_line.h"
 # include "../includes/structs.h"
 
+#define _USE_MATH_DEFINES // to enable the use of macro constants such as M_PI
+#include <math.h>
+
 # ifndef O_DIRECTORY
 #  define O_DIRECTORY 00200000
 # endif
 
-# define TITLE "MADAME 🤝"
-# define MSG_WRONG_FILE "Error.\nIs not an existing .cub file\n"
-# define MSG_MISSING_INFO "Error.\nThe .cub file is missing some info.\n"
-# define MSG_INVALID_INFO "Error.\nThe infos of this map are invalid.\n"
+# define TITLE "Les Traductrices Interpretes"
+
+// ERROR MESSAGES
+# define MSG_WRONG_FILE "Is not an existing .cub file\n"
+# define MSG_MISSING_INFO "The .cub file is missing some info.\n"
+# define MSG_INVALID_INFO "The infos of this map are invalid.\n"
 # define MSG_WRONG_NB_ARG "Correct usage is ./cub3d <map.cub>\n"
+# define MSG_DIRECTION "At least one direction is missing or the input is wrong"
+# define MSG_FLOOR_CEILING "The floor or ceiling info is wrong or missing."
+# define MSG_INVALID_MAP "The map description is either wrong or incomplete."
+
+// KEYS
+# define ARROW_TOP 65362
+# define ARROW_BOT 65364
+# define ARROW_LEFT 65361
+# define ARROW_RIGHT 65363
+
+// MLX
+# define W_HEIGHT 512
+# define W_WIDTH 1024
+
+// COLORS
+# define WHITE 0xFFFFFF
+# define PINK 0xE625A1
+# define PURPLE 0x67539E
 
 enum e_output
 { 
@@ -57,10 +80,13 @@ int		check_right_side_is_closed(char **map_array);
 int		handle_crossbtn(t_data *data);
 int		handle_keypress(int keysym, t_data *data);
 // 02_EVENTS_HANDLING - 01_hooks.c
-void	mlx_loop_and_hooks(t_data *data);
+void	mlx_loop_and_hooks(t_data data);
 
 // 03_GRAPHICS - 00_init_window.c
 int		init_window(t_data *data);
+void	draw_line(void *mlx, void *window, int beginX, int beginY, int endX, int endY, int color);
+int		render(t_data *data);
+void	draw_the_2d_map(t_data *data);
 
 // 05_UTILS - free_functions.c
 void	free_double_array(char **tab);
