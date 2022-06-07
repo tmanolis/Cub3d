@@ -17,6 +17,10 @@ int	main(int argc, char **argv)
 		check_map_retrieved(&data.map, data.map.map);
 		init_window(&data);
 		printf("Window lancée, z'est partiiiiii!\n");
+		// init struct infos avec les positions recupérées
+		init_infos(&data, &data.infos);
+
+		mlx_loop_hook(data.mlx, &raycasting_loop, &data);
 		mlx_loop_and_hooks(&data);
 		mlx_destroy_display(data.mlx);
 		free_for_your_life(&data);

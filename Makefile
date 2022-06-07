@@ -44,10 +44,12 @@ SRCS = main.c 									\
 	02_Events_handling/00_handlers.c 			\
 	02_Events_handling/01_hooks.c 				\
 	03_Graphics/00_init_window.c 				\
+	04_Raycasting/00_init_infos.c				\
+	04_Raycasting/01_raycasting_loop.c			\
 	05_Utils/gnl/get_next_line.c 				\
 	05_Utils/gnl/get_next_line_utils.c 			\
 	05_Utils/check_arg.c 						\
-	05_Utils/free_functions.c 				\
+	05_Utils/free_functions.c 					\
 	05_Utils/init_data.c 						\
 	05_Utils/utils_functions.c 					\
 

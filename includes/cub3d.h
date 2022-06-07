@@ -5,6 +5,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdbool.h>
+# include <math.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -61,6 +62,11 @@ void	mlx_loop_and_hooks(t_data *data);
 
 // 03_GRAPHICS - 00_init_window.c
 int		init_window(t_data *data);
+
+// 04_RAYCASTING - 00_init_infos.c
+void	init_infos(t_data *data, t_infos *infos);
+// 04_RAYCASTING - 01_init_infos.c
+int		raycasting_loop(t_data *data);
 
 // 05_UTILS - free_functions.c
 void	free_double_array(char **tab);

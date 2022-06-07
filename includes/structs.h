@@ -25,6 +25,18 @@ typedef struct s_map
 	int		p_y;
 }				t_map;
 
+typedef	struct	s_infos
+{
+	double	posX;
+	double	posY;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+	double	moveSpeed;
+	double	rotSpeed;
+}				t_infos;
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -33,7 +45,7 @@ typedef struct s_data
 	int			win_width;
 	t_graphics	graphics;
 	t_map		map;
-
+	t_infos		infos;
 }				t_data;
 
 #endif
