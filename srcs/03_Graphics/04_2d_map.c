@@ -59,9 +59,21 @@ void	draw_a_cell2(t_data *data, int beginX, int beginY, int lenX, int lenY, int 
 
 void	draw_player_pos(t_data *data)
 {
-	draw_a_cell(data, data->map.p_x * 8, data->map.p_y * 8, 8, 8, PINK);
+	draw_a_cell(data, data->map.p_x * CELL_SIZE, data->map.p_y * CELL_SIZE, CELL_SIZE, CELL_SIZE, PINK);
 }
 
+// FIXME: le 24 (dimensions de la map) est hardcodé, à automatiser
+/**
+ * @brief Displays on screen the minimap (top-down view) with the player in it
+ * 		
+ * 		 Steps:
+ * 		 - Loops through the two dimensional array of the map
+ * 		 - If the cell is a wall (== '1') : draws the cell in white
+ * 		 - Else draws the floor in purple
+ * 		 - At the end, draws the player position over
+ * 
+ * @param data 
+ */
 void	draw_the_2d_map(t_data *data)
 {
 	int i;
@@ -75,10 +87,10 @@ void	draw_the_2d_map(t_data *data)
 		{
 			if (data->map.map[i][j] == '1') // si c'est un mur
 			{
-				draw_a_cell(data, j * 8, i * 8, 8, 8, WHITE);
+				draw_a_cell(data, j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE, WHITE);
 			}
 			else
-				draw_a_cell2(data, j * 8, i * 8, 8, 8, PURPLE);
+				draw_a_cell2(data, j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE, PURPLE);
 			j++;
 		}
 		i++;

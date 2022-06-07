@@ -42,6 +42,7 @@
 // MLX
 # define W_HEIGHT 512
 # define W_WIDTH 1024
+# define CELL_SIZE 8
 
 // COLORS
 # define WHITE 0xFFFFFF

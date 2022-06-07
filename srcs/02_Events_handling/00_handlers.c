@@ -31,7 +31,7 @@ int	render(t_data *data)
 	// raycast(data);
 	// draw_line(data.mlx, data.win, W_WIDTH, W_HEIGHT, 0, 0, 0xFFFFFF);
 	draw_the_2d_map(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img.mlx_img, -1, W_HEIGHT - 24 * 8);
+	mlx_put_image_to_window(data->mlx, data->win, data->img.mlx_img, -1, W_HEIGHT - 24 * CELL_SIZE);
 
 	return (0);
 }
