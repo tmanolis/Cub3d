@@ -24,10 +24,10 @@ void	draw_a_cell(t_data *data, int beginX, int beginY, int lenX, int lenY, int c
 	int	i;
 	int	j;
 
-	i = 0;
+	i = 1;
 	while (i < lenX)
 	{
-		j = 0;
+		j = 1;
 		while (j < lenY)
 		{
 			my_mlx_pixel_put(&data->img, beginX + i, beginY + j, color);
@@ -77,20 +77,20 @@ void	draw_player_pos(t_data *data)
 void	draw_the_2d_map(t_data *data)
 {
 	int i;
-	int j;
+	size_t j;
 
 	i = 0;
-	while (i < 24) // 24 est la hauteur de la map
+	while (i < data->map.nb_line)
 	{
 		j = 0;
-		while (j < 24) // width de la map
+		while (j < ft_strlen(data->map.map[i]))
 		{
-			if (data->map.map[i][j] == '1') // si c'est un mur
+			if (data->map.map[i][j] == '1')
 			{
 				draw_a_cell(data, j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE, WHITE);
 			}
-			else
-				draw_a_cell2(data, j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE, PURPLE);
+			// else
+			// 	draw_a_cell2(data, j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE, PURPLE);
 			j++;
 		}
 		i++;
