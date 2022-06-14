@@ -24,16 +24,22 @@ typedef struct	s_img
 
 typedef struct s_map
 {
-	int		fd;
-	int		line_count;
-	char	*path;
-	char	**file;
-	int		nb_line;
-	char	**map;
-	int		index_end_of_map;
-	char	p_direction;
-	int		p_x;
-	int		p_y;
+	int			fd;
+	int			line_count;
+	char		*path;
+	char		**file;
+	int			nb_line;
+	char		**map;
+	int			index_end_of_map;
+	char		p_direction;
+	int			p_x;
+	int			p_y;
+	int			dir_x;
+	int			dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		move_speed;
+	double		rotate_speed;
 }				t_map;
 
 typedef struct s_data

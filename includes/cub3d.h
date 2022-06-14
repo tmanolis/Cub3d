@@ -48,6 +48,7 @@
 # define WHITE 0xFFFFFF
 # define PINK 0xE625A1
 # define PURPLE 0x67539E
+# define BLACK 0x000000
 
 enum e_output
 { 
@@ -82,12 +83,16 @@ int		handle_crossbtn(t_data *data);
 int		handle_keypress(int keysym, t_data *data);
 // 02_EVENTS_HANDLING - 01_hooks.c
 void	mlx_loop_and_hooks(t_data data);
+// 02_EVENTS_HANDLING - 02_player_moves.c
+void	move_player(t_data *data, int keysym);
 
 // 03_GRAPHICS - 00_init_window.c
 int		init_window(t_data *data);
 void	draw_line(void *mlx, void *window, int beginX, int beginY, int endX, int endY, int color);
 int		render(t_data *data);
 void	draw_the_2d_map(t_data *data);
+// 03_GRAPHICS - 04_2d_map.c
+void	draw_a_cell(t_data *data, int beginX, int beginY, int lenX, int lenY, int color);
 
 // 05_UTILS - free_functions.c
 void	free_double_array(char **tab);
@@ -97,6 +102,5 @@ void	init_data(t_data *data);
 // 05_UTILS - utils_functions.c
 int		is_a_white_space(char c);
 int		print_error(char *str);
-
 
 #endif

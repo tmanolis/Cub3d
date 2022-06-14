@@ -43,6 +43,7 @@ SRCS = main.c 									\
 	01_Parsing/05_check_map_borders.c 			\
 	02_Events_handling/00_handlers.c 			\
 	02_Events_handling/01_hooks.c 				\
+	02_Events_handling/02_player_moves.c 		\
 	03_Graphics/00_init_window.c 				\
 	03_Graphics/01_raycasting_init.c 			\
 	03_Graphics/02_raycasting_engine.c 			\

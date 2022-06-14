@@ -43,10 +43,10 @@ void	draw_a_cell2(t_data *data, int beginX, int beginY, int lenX, int lenY, int 
 	int	i;
 	int	j;
 
-	i = 1;
+	i = 0;
 	while (i < lenX)
 	{
-		j = 1;
+		j = 0;
 		while (j < lenY)
 		{
 			my_mlx_pixel_put(&data->img, beginX + i, beginY + j, color);
@@ -62,7 +62,6 @@ void	draw_player_pos(t_data *data)
 	draw_a_cell(data, data->map.p_x * CELL_SIZE, data->map.p_y * CELL_SIZE, CELL_SIZE, CELL_SIZE, PINK);
 }
 
-// FIXME: le 24 (dimensions de la map) est hardcodé, à automatiser
 /**
  * @brief Displays on screen the minimap (top-down view) with the player in it
  * 		
@@ -89,7 +88,7 @@ void	draw_the_2d_map(t_data *data)
 			{
 				draw_a_cell(data, j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE, WHITE);
 			}
-			// else
+			// else if (data->map.map[i][j] == '0')
 			// 	draw_a_cell2(data, j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE, PURPLE);
 			j++;
 		}

@@ -21,8 +21,8 @@ int	handle_keypress(int keysym, t_data *data)
 		free_for_your_life(data);
 		exit(0);
 	}
-	// else if (ft_strchr("wasd", keysym))
-	// 	move_player(data, keysym);
+	else if (ft_strchr("wasd", keysym))
+		move_player(data, keysym);
 	return (0);
 }
 
