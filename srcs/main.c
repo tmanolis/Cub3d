@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 		data.map.plane_x = 0;
 		data.map.plane_y = 0.66;
 		data.map.move_speed = 1; // test, valeur arbitraire
-		data.map.rotate_speed = 0.05;
+		data.map.rotate_speed = 1;
 		init_window(&data);	
 		mlx_loop_and_hooks(data);
 		mlx_loop(data.mlx);
