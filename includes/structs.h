@@ -29,6 +29,7 @@ typedef	struct	s_infos
 {
 	double	posX;
 	double	posY;
+	int		**map;
 	double	dirX;
 	double	dirY;
 	double	planeX;
