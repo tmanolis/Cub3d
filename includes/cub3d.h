@@ -91,6 +91,8 @@ int		init_window(t_data *data);
 void	draw_line(void *mlx, void *window, int beginX, int beginY, int endX, int endY, int color);
 int		render(t_data *data);
 void	draw_the_2d_map(t_data *data);
+// 03_GRAPHICS - 02_raycasting_engine.c
+int		raycasting_loop(t_data *data);
 // 03_GRAPHICS - 04_2d_map.c
 void	draw_a_cell(t_data *data, int beginX, int beginY, int lenX, int lenY, int color);
 
