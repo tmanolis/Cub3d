@@ -108,7 +108,14 @@ void	calc(t_data *data)
 				side = 1;
 			}
 			//Check if ray has hit a wall
-			if (map->map[mapX][mapY] > 0) hit = 1;
+			
+			if (worldMap[mapX][mapY] == 1) 
+				hit = 1;
+			else if (worldMap[mapX][mapY] == 2)
+			{
+				printf("boucle hit : %d\n", worldMap[mapX][mapY]);
+				hit = 1;
+			}
 		}
 		if (side == 0)
 			perpWallDist = (mapX - map->pos_x + (1 - stepX) / 2) / rayDirX;
@@ -127,19 +134,19 @@ void	calc(t_data *data)
 			drawEnd = data->win_height - 1;
 
 		int	color;
-		color = PURPLE;
-		printf("je tombe sur cette valeur : %c\n", map->map[mapY][mapX]);
-		if (map->map[mapY][mapX] == '1')
+		printf("je tombe sur cette valeur : %d\n", worldMap[mapX][mapY]);
+		if (worldMap[mapX][mapY] == 1)
 			color = 0xFF0000; // rouge
-		// else if (map.map[mapY][mapX] == '2')
-		// 	color = 0x00FF00;  // vert
-		// else if (map.map[mapY][mapX] == '3')
-		// 	color = 0x0000FF; // bleu
-		// else if (map.map[mapY][mapX] == 4)
-		// 	color = 0xFFFFFF; // white
-		// else if (map.map[mapY][mapX] == 5)
-		// 	color = 0xFFFF00; // jaune
-		
+		else if (worldMap[mapX][mapY] == 2)
+			color = 0x00FF00;  // vert
+		else if (worldMap[mapX][mapY] == 3)
+			color = 0x0000FF; // bleu
+		else if (worldMap[mapX][mapY] == 4)
+			color = 0xFFFFFF; // white
+		else if (worldMap[mapX][mapY] == 5)
+			color = 0xFFFF00; // jaune
+		else
+			color = PURPLE;
 		// if (side == 1)
 		// 	color = color / 2;
 
