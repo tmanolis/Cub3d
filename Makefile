@@ -34,27 +34,27 @@ MLX_PATH = ${MLX_DIR}/libmlx.a
 #########################################
 #			SOURCES	FILES				#
 #########################################
-SRCS = main.c 									\
-	01_Parsing/00_open_file.c 					\
-	01_Parsing/01_retrieve_info_in_file.c 		\
-	01_Parsing/02_retrieve_map_description.c 	\
-	01_Parsing/03_check_info_retrieved.c 		\
-	01_Parsing/04_check_map_retrieved.c 		\
-	01_Parsing/05_check_map_borders.c 			\
-	02_Events_handling/00_handlers.c 			\
-	02_Events_handling/01_hooks.c 				\
-	02_Events_handling/02_player_moves.c 		\
-	03_Graphics/00_init_window.c 				\
-	03_Graphics/01_raycasting_init.c 			\
-	03_Graphics/02_raycasting_engine.c 			\
-	03_Graphics/03_raycasting_utils.c 			\
-	03_Graphics/04_2d_map.c 					\
-	05_Utils/gnl/get_next_line.c 				\
-	05_Utils/gnl/get_next_line_utils.c 			\
-	05_Utils/check_arg.c 						\
-	05_Utils/free_functions.c 				\
-	05_Utils/init_data.c 						\
-	05_Utils/utils_functions.c 					\
+SRCS = main.c 										\
+	01_Parsing/00_open_file.c 						\
+	01_Parsing/01_retrieve_info_in_file.c 			\
+	01_Parsing/02_retrieve_map_description.c 		\
+	01_Parsing/03_check_info_retrieved.c 			\
+	01_Parsing/04_check_map_retrieved.c 			\
+	01_Parsing/05_check_map_borders.c 				\
+	02_Events_handling/00_handlers.c 				\
+	02_Events_handling/01_hooks.c 					\
+	02_Events_handling/02_player_moves_minimap.c	\
+	03_Graphics/00_init_window.c 					\
+	03_Graphics/01_raycasting_init.c 				\
+	03_Graphics/02_raycasting_engine.c 				\
+	03_Graphics/03_raycasting_utils.c 				\
+	03_Graphics/04_2d_map.c 						\
+	05_Utils/gnl/get_next_line.c 					\
+	05_Utils/gnl/get_next_line_utils.c 				\
+	05_Utils/check_arg.c 							\
+	05_Utils/free_functions.c 						\
+	05_Utils/init_data.c 							\
+	05_Utils/utils_functions.c 						\
 
 SRC	= $(addprefix $(SRCS_DIR),$(SRCS))
 
