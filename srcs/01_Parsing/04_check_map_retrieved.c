@@ -62,8 +62,8 @@ static int	check_player_position(t_map *map, char **map_array)
 		{
 			if (ft_strchr("NSEW", map_array[i][j]))
 			{
-				map->p_x = j;
-				map->p_y = i;
+				map->p_x = i;
+				map->p_y = j;
 			}
 			j++;
 		}
