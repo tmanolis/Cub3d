@@ -1,6 +1,9 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+# define W_HEIGHT 512 // W stands for window
+# define W_WIDTH 1024
+
 typedef struct	s_graphics
 {
 	char	*dir_NO;
@@ -21,6 +24,17 @@ typedef struct	s_img
 	int		x;
 	int		y;
 }				t_img;
+
+typedef struct	s_buf
+{
+	void	*img;
+	int		*info;
+	int		size_l;
+	int		bpp;
+	int		endian;
+	int		img_width;
+	int		img_height;
+}				t_buf;
 
 typedef struct s_map
 {
@@ -51,6 +65,9 @@ typedef struct s_data
 	t_graphics	graphics;
 	t_map		map;
 	t_img		img;
+	t_buf		buf;
+	int			buffer[W_HEIGHT][W_WIDTH];
+	int			**textures;
 
 }				t_data;
 
