@@ -25,9 +25,7 @@ int	main(int argc, char **argv)
 		data.map.rotate_speed = 0.05;
 		printf("x : %f | y : %f\n", data.map.pos_x, data.map.pos_y);
 		init_window(&data);
-		mlx_loop_hook(data.mlx, &raycasting_loop, &data);
 		mlx_loop_and_hooks(data);
-		mlx_loop(data.mlx);
 		// mlx_destroy_display(data.mlx);
 		free_for_your_life(&data);
 	}

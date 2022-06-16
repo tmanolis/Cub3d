@@ -35,3 +35,67 @@ int	render(t_data *data)
 
 	return (0);
 }
+
+int	key_press(int keysym, t_data *data)
+{
+	double old_dir_x;
+	double old_plane_x;
+
+	printf("Touche appuyée : %c\n", keysym);
+	printf("Avant déplacement -> X: %f | Y : %f\n", data->map.pos_x, data->map.pos_y);
+	old_dir_x = data->map.dir_x;
+	old_plane_x = data->map.plane_x;
+	if (keysym == 'w')
+	{
+		if (data->map.map[(int)(data->map.pos_x + data->map.dir_x * data->map.move_speed)][(int)data->map.pos_y] != '1')
+			data->map.pos_x += data->map.dir_x * data->map.move_speed;
+		if (data->map.map[(int)(data->map.pos_x)][(int)(data->map.pos_y + data->map.dir_y * data->map.move_speed)] != '1')
+			data->map.pos_y += data->map.dir_y * data->map.move_speed;
+	}
+	if (keysym == 's')
+	{
+		if (data->map.map[(int)(data->map.pos_x - data->map.dir_x * data->map.move_speed)][(int)(data->map.pos_y)] != '1')
+			data->map.pos_x -= data->map.dir_x * data->map.move_speed;
+		if (data->map.map[(int)(data->map.pos_x)][(int)(data->map.pos_y - data->map.dir_y * data->map.move_speed)] != '1')
+			data->map.pos_y -= data->map.dir_y * data->map.move_speed;
+	}
+	// BUG: trouver une maniere plus organique de changer la valeur du dir_y. x pas sensé bouger
+	if (keysym == 'a')
+	{
+		data->map.dir_y -= 0.05;
+		printf("Valeur de dir_y : %f\n", data->map.dir_y);
+		if (data->map.map[(int)(data->map.pos_x - data->map.dir_x * data->map.move_speed)][(int)(data->map.pos_y)] != '1')
+			data->map.pos_x -= data->map.dir_x * data->map.move_speed;
+		if (data->map.map[(int)(data->map.pos_x)][(int)(data->map.pos_y + data->map.dir_y * data->map.move_speed)] != '1')
+			data->map.pos_y += data->map.dir_y * data->map.move_speed;
+	}
+	if (keysym == 'd')
+	{
+		data->map.dir_y += 0.05;
+		if (data->map.map[(int)(data->map.pos_x + data->map.dir_x * data->map.move_speed)][(int)(data->map.pos_y)] != '1')
+			data->map.pos_x += data->map.dir_x * data->map.move_speed;
+		if (data->map.map[(int)(data->map.pos_x)][(int)(data->map.pos_y - data->map.dir_y * data->map.move_speed)] != '1')
+			data->map.pos_y -= data->map.dir_y * data->map.move_speed;
+	}
+	//rotate to the right
+	if (keysym == ARROW_RIGHT)
+	{
+		//both camera direction and camera plane must be rotated
+		data->map.dir_x = data->map.dir_x * cos(-data->map.rotate_speed) - data->map.dir_y * sin(-data->map.rotate_speed);
+		data->map.dir_y = old_dir_x * sin(-data->map.rotate_speed) + data->map.dir_y * cos(-data->map.rotate_speed);
+		data->map.plane_x = data->map.plane_x * cos(-data->map.rotate_speed) - data->map.plane_y * sin(-data->map.rotate_speed);
+		data->map.plane_y = old_plane_x * sin(-data->map.rotate_speed) + data->map.plane_y * cos(-data->map.rotate_speed);
+	}
+	//rotate to the left
+	if (keysym == ARROW_LEFT)
+	{
+		//both camera direction and camera plane must be rotated
+		data->map.dir_x = data->map.dir_x * cos(data->map.rotate_speed) - data->map.dir_y * sin(data->map.rotate_speed);
+		data->map.dir_y = old_dir_x * sin(data->map.rotate_speed) + data->map.dir_y * cos(data->map.rotate_speed);
+		data->map.plane_x = data->map.plane_x * cos(data->map.rotate_speed) - data->map.plane_y * sin(data->map.rotate_speed);
+		data->map.plane_y = old_plane_x * sin(data->map.rotate_speed) + data->map.plane_y * cos(data->map.rotate_speed);
+	}
+	printf("Après déplacement -> X: %f | Y : %f\n", data->map.pos_x, data->map.pos_y);
+	// raycasting_loop(data);
+	return (0);
+}

@@ -81,6 +81,7 @@ int		check_right_side_is_closed(char **map_array);
 // 02_EVENTS_HANDLING - 00_handlers.c
 int		handle_crossbtn(t_data *data);
 int		handle_keypress(int keysym, t_data *data);
+int		key_press(int keysym, t_data *data);
 // 02_EVENTS_HANDLING - 01_hooks.c
 void	mlx_loop_and_hooks(t_data data);
 // 02_EVENTS_HANDLING - 02_player_moves.c

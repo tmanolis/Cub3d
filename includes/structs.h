@@ -36,8 +36,8 @@ typedef struct s_map
 	int			p_y;
 	double		pos_x;
 	double		pos_y;
-	int			dir_x;
-	int			dir_y;
+	double			dir_x;
+	double			dir_y;
 	double		plane_x;
 	double		plane_y;
 	double		move_speed;
