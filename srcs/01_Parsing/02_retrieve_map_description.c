@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   02_retrieve_map_description.c                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/30 13:16:45 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/07/04 10:24:47 by msanjuan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	count_map_lines(t_data *data, char **file, int i)
 {
-	int index_value;
+	int	index_value;
 	int	j;
 
 	index_value = i;
@@ -13,7 +25,7 @@ int	count_map_lines(t_data *data, char **file, int i)
 		|| file[i][j] == '\v' || file[i][j] == '\f')
 			j++;
 		if (file[i][j] != '1')
-			break;
+			break ;
 		i++;
 	}
 	data->map.index_end_of_map = i;
@@ -22,16 +34,25 @@ int	count_map_lines(t_data *data, char **file, int i)
 
 int	fill_map_array(t_map *map, char **map_array, int index)
 {
-	int i;
+	int		i;
+	int		j;
+	size_t	biggest_len;
 
+	biggest_len = find_biggest_len(map, index);
 	i = 0;
 	while (i < map->nb_line)
 	{
-		map_array[i] = ft_strdup(map->file[index]);
+		j = 0;
+		map_array[i] = (char *)malloc(sizeof(char) * (biggest_len + 1));
 		if (!map_array[i])
 			return (FAILURE);
-		if (map_array[i][ft_strlen(map_array[i]) - 1] == '\n')
-			map_array[i][ft_strlen(map_array[i]) - 1] = '\0';
+		while (map->file[index][j] && map->file[index][j] != '\n')
+		{
+			map_array[i][j] = map->file[index][j];
+			j++;
+		}	
+		while (j < (int)biggest_len)
+			map_array[i][j++] = '\0';
 		i++;
 		index++;
 	}
@@ -52,19 +73,21 @@ int	get_map_info(t_data *data, char **file, int i)
 
 void	change_space_into_wall(t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (map->map[i])
 	{
 		j = 0;
-		while (map->map[i][j] == ' ' || map->map[i][j] == '\t' || map->map[i][j] == '\r'
+		while (map->map[i][j] == ' ' || map->map[i][j] == '\t'
+		|| map->map[i][j] == '\r'
 		|| map->map[i][j] == '\v' || map->map[i][j] == '\f')
 			j++;
 		while (map->map[i][++j])
 		{
-			if (map->map[i][j] == ' ' && j != map->map[i][ft_strlen(map->map[i]) - 1])
+			if (map->map[i][j] == ' '
+				&& j != map->map[i][ft_strlen(map->map[i]) - 1])
 				map->map[i][j] = '1';
 		}
 		i++;

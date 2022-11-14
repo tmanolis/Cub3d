@@ -1,7 +1,7 @@
    WE                            assets/grey_stone.xpm 
 NO      assets/purple_stone.xpm
 
-
+C 225,   30,4
 
 SO assets/wall_brick.xpm
 
@@ -9,6 +9,7 @@ F      28  ,    100,    10
 
 EA assets/wood.xpm
 
+NO      assets/purple_stone.xpm
 
 
 C 225,   30,4

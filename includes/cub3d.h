@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/30 19:05:41 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/07/04 14:40:18 by msanjuan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -15,14 +27,14 @@
 # include "../includes/get_next_line.h"
 # include "../includes/structs.h"
 
-#define _USE_MATH_DEFINES // to enable the use of macro constants such as M_PI
-#include <math.h>
+# define _USE_MATH_DEFINES
+# include <math.h>
 
 # ifndef O_DIRECTORY
 #  define O_DIRECTORY 00200000
 # endif
 
-# define TITLE "Les Traductrices Interpretes"
+# define TITLE "LES TRADUCTRICES INTERPRETES"
 
 // ERROR MESSAGES
 # define MSG_WRONG_FILE "Is not an existing .cub file\n"
@@ -42,6 +54,8 @@
 // MLX
 # define W_HEIGHT 512
 # define W_WIDTH 1024
+# define T_HEIGHT 64
+# define T_WIDTH 64
 # define CELL_SIZE 8
 
 // COLORS
@@ -50,8 +64,13 @@
 # define PURPLE 0x67539E
 # define BLACK 0x000000
 
+// GAME PHYSICS
+# define PLAYER_SIZE 0.15
+
+typedef unsigned long	t_ulong;
+
 enum e_output
-{ 
+{
 	SUCCESS = 0,
 	FAILURE = 1,
 	ERR = 2,
@@ -59,16 +78,33 @@ enum e_output
 	CONTINUE = 4
 };
 
+enum e_cardinals
+{
+	NO,
+	SO,
+	WE,
+	EA
+};
+
+enum e_map
+{
+	TILE = '0',
+	WALL = '1'
+};
+
 // 00_ERR_HANDLING - 00_check_arg.c
 int		check_arg(char *arg);
 
 // 01_PARSING - 00_open_file.c
 void	create_map_from_cub_file(char *path, t_data *data);
-// 01_PARSING - 01_retrieve_info_in_file.c
+// 01_PARSING - 01_00_retrieve_path_textures.c
 int		retrieve_info_in_file(t_data *data, char **map);
+// 01_PARSING - 01_01_retrieve_floor_ceiling.c
+int		fill_in_the_floor_or_ceiling(t_graphics *graph, char *line, int j);
 // 01_PARSING - 02_parse_map_description.c
 int		retrieve_map_description(t_data *data, char **map, int i);
 // 01_PARSING - 03_check_info_retrieved.c
+t_ulong	convert_rgb_to_hex(int *rgb_array);
 int		check_info_retrieved(t_graphics *graphics);
 // 01_PARSING - 04_check_map_retrieved.c
 int		check_map_retrieved(t_map *map, char **map_array);
@@ -79,28 +115,53 @@ int		check_left_side_is_closed(char **map_array);
 int		check_right_side_is_closed(char **map_array);
 
 // 02_EVENTS_HANDLING - 00_handlers.c
-int		handle_crossbtn(t_data *data);
-int		handle_keypress(int keysym, t_data *data);
+int		cross_btn_handler(t_data *data);
+int		key_press_handler(int keysym, t_data *data);
+int		raycasting_handler(t_data *data);
 // 02_EVENTS_HANDLING - 01_hooks.c
 void	mlx_loop_and_hooks(t_data data);
 // 02_EVENTS_HANDLING - 02_player_moves.c
-void	move_player(t_data *data, int keysym);
+void	move_forward(t_data *data);
+void	move_backward(t_data *data);
+void	move_left(t_data *data);
+void	move_right(t_data *data);
+void	rotate_sight(t_data *data, double ro_speed);
+// 02_EVENTS_HANDLING - 03_player_offset.c
+double	player_offset(t_data *data, char letter);
 
 // 03_GRAPHICS - 00_init_window.c
 int		init_window(t_data *data);
-void	draw_line(void *mlx, void *window, int beginX, int beginY, int endX, int endY, int color);
-int		render(t_data *data);
-void	draw_the_2d_map(t_data *data);
-// 03_GRAPHICS - 04_2d_map.c
-void	draw_a_cell(t_data *data, int beginX, int beginY, int lenX, int lenY, int color);
+void	init_img_to_display(t_data *data, t_img *img);
+// 03_GRAPHICS - 01_raycasting_init.c
+void	init_raycasting_var(t_data *data, t_raycast *ray, t_map *map, int x);
+void	calculate_raydir_x_and_step_x(t_raycast *ray, t_map *map);
+void	which_distance_if_wall_hit(t_raycast *ray, t_map *map);
+void	calculate_wall_specs(t_data *data, t_raycast *ray, t_map *map);
+// 03_GRAPHICS - 02_raycasting_engine.c
+void	calculate_and_display(t_data *data, t_img *img);
+// 03_GRAPHICS - 03_raycasting_utils.c
+int		rgb_to_hex(int r, int g, int b);
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	display_ceiling(t_data *data, t_img *img, int start, int end);
+void	display_floor(t_data *data, t_img *img, int start, int end);
+// 03_GRAPHICS - 04_init_textures.c
+void	init_textures(t_data *data);
 
-// 05_UTILS - free_functions.c
+// 04_UTILS - change_orientation_map.c
+void	change_orientation_map(t_data *data, char **map_char);
+// 04_UTILS - error_exit.c
+void	error_exit(t_data *data, char *str);
+// 04_UTILS - free_functions.c
 void	free_double_array(char **tab);
 int		free_for_your_life(t_data *data);
-// 05_UTILS - init_data.c
+void	free_textures(t_data *data, t_tex tex);
+// 04_UTILS - init_data.c
 void	init_data(t_data *data);
-// 05_UTILS - utils_functions.c
+void	init_raycasting(t_map *map);
+// 04_UTILS - utils_functions.c
 int		is_a_white_space(char c);
 int		print_error(char *str);
+size_t	find_biggest_len(t_map *map, int i);
+int		skip_walls(char **map_array);
 
 #endif

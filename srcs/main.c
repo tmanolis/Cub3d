@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/30 19:06:27 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/07/04 10:51:31 by msanjuan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	main(int argc, char **argv)
 {
-	t_data data;
+	t_data	data;
 
 	if (argc == 2)
 	{
@@ -14,17 +26,13 @@ int	main(int argc, char **argv)
 			return (free_for_your_life(&data));
 		if (check_info_retrieved(&data.graphics) == FAILURE)
 			return (print_error(MSG_INVALID_INFO) && free_for_your_life(&data));
-		check_map_retrieved(&data.map, data.map.map);
-		data.map.dir_x = -1;
-		data.map.dir_y = 1;
-		data.map.plane_x = 0;
-		data.map.plane_y = 0.66;
-		data.map.move_speed = 1; // test, valeur arbitraire
-		data.map.rotate_speed = 1;
-		init_window(&data);	
+		if (check_map_retrieved(&data.map, data.map.map) == FAILURE)
+			return (print_error(MSG_INVALID_INFO) && free_for_your_life(&data));
+		change_orientation_map(&data, data.map.map);
+		init_raycasting(&data.map);
+		init_window(&data);
+		init_textures(&data);
 		mlx_loop_and_hooks(data);
-		mlx_loop(data.mlx);
-		// mlx_destroy_display(data.mlx);
 		free_for_your_life(&data);
 	}
 	else

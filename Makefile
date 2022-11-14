@@ -21,8 +21,7 @@ MLX_DIR = minilibx-linux
 #########################################
 #			FLAGS COMPILATION			#
 #########################################
-CFLAGS = -Wall -Werror -Wextra -g
-#CFLAGS += -fsanitize=address  -Wno-unused
+CFLAGS = -Wall -Werror -Wextra -g 
 IFLAGS := -I includes/
 LFLAGS := -L$(LIBFT_DIR) -lft
 MFLAGS = -ldl -lmlx -L${MLX_DIR} -lm -lXext -lX11 -Imlx $(MLX_PATH)
@@ -36,7 +35,8 @@ MLX_PATH = ${MLX_DIR}/libmlx.a
 #########################################
 SRCS = main.c 									\
 	01_Parsing/00_open_file.c 					\
-	01_Parsing/01_retrieve_info_in_file.c 		\
+	01_Parsing/01_00_retrieve_path_textures.c 	\
+	01_Parsing/01_01_retrieve_floor_ceiling.c 	\
 	01_Parsing/02_retrieve_map_description.c 	\
 	01_Parsing/03_check_info_retrieved.c 		\
 	01_Parsing/04_check_map_retrieved.c 		\
@@ -44,17 +44,21 @@ SRCS = main.c 									\
 	02_Events_handling/00_handlers.c 			\
 	02_Events_handling/01_hooks.c 				\
 	02_Events_handling/02_player_moves.c 		\
+	02_Events_handling/03_player_offset.c 		\
 	03_Graphics/00_init_window.c 				\
 	03_Graphics/01_raycasting_init.c 			\
 	03_Graphics/02_raycasting_engine.c 			\
 	03_Graphics/03_raycasting_utils.c 			\
-	03_Graphics/04_2d_map.c 					\
-	05_Utils/gnl/get_next_line.c 				\
-	05_Utils/gnl/get_next_line_utils.c 			\
-	05_Utils/check_arg.c 						\
-	05_Utils/free_functions.c 				\
-	05_Utils/init_data.c 						\
-	05_Utils/utils_functions.c 					\
+	03_Graphics/04_init_textures.c				\
+	04_Utils/gnl/get_next_line.c 				\
+	04_Utils/gnl/get_next_line_utils.c 			\
+	04_Utils/change_orientation_map.c 			\
+	04_Utils/check_arg.c 						\
+	04_Utils/error_exit.c						\
+	04_Utils/free_functions.c 					\
+	04_Utils/init_data.c 						\
+	04_Utils/init_raycasting.c					\
+	04_Utils/utils_functions.c 					\
 
 SRC	= $(addprefix $(SRCS_DIR),$(SRCS))
 
