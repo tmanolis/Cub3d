@@ -13,4 +13,4 @@ Cub3D is a project that introduces you to the world of ray-casting, enabling you
 
 ## Usage
 ```bash
-./cub3D [map_file.cub]
+./cub3d [map_file.cub]
